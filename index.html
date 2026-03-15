@@ -27,3 +27,47 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Dropshipping Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Dropshipping Manager</h1>
+
+<div class="card">
+
+<label>Argent initial ($)</label>
+<input id="invest" type="number" value="100">
+
+<label>Profit mensuel (%)</label>
+<input id="profit" type="number" value="30">
+
+<label>Nombre de mois</label>
+<input id="months" type="number" value="12">
+
+<button onclick="calculate()">Calculer</button>
+
+<h2 id="result">Future: $0</h2>
+
+</div>
+
+<div class="chartBox">
+<canvas id="moneyChart"></canvas>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
