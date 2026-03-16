@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>AI Dropshipping Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>AI Dropshipping Manager</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -11,32 +12,50 @@
 
 <body>
 
-<div class="container">
+<div class="login-container">
 
-<h1>AI Dropshipping Manager</h1>
+<div class="login-card">
 
-<div class="card">
+<h1>Dropshipping AI</h1>
 
-<label>Argent initial ($)</label>
-<input id="invest" type="number" value="100">
+<p class="subtitle">
+Manage your money, products and predictions
+</p>
 
-<label>Profit mensuel (%)</label>
-<input id="profit" type="number" value="30">
+<label>Username</label>
+<input id="username" type="text" placeholder="Enter username">
 
-<label>Nombre de mois</label>
-<input id="months" type="number" value="12">
+<label>Password</label>
+<input id="password" type="password" placeholder="Enter password">
 
-<button onclick="calculate()">Calculer</button>
+<button onclick="login()">Login</button>
 
-<h2 id="result">Future: $0</h2>
+<p id="error" class="error"></p>
+
+<div class="login-info">
+
+<h3>Demo Login</h3>
+
+<p>username: admin</p>
+<p>password: 1234</p>
 
 </div>
 
-<div class="chartBox">
-<canvas id="moneyChart"></canvas>
 </div>
 
 </div>
+
+<footer>
+
+<p>
+AI Dropshipping Dashboard
+</p>
+
+<p>
+Money tracker • Product tracker • Predictions
+</p>
+
+</footer>
 
 <script src="script.js"></script>
 
