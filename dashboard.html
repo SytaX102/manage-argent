@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>AI Dropshipping Dashboard</h1>
+
+<button onclick="logout()">Logout</button>
+
+</header>
+
+<div class="grid">
+
+<div class="card">
+
+<h2>Money Tracker</h2>
+
+<label>Invested</label>
+<input id="invest" type="number">
+
+<label>Profit</label>
+<input id="profit" type="number">
+
+<button onclick="addMoney()">Add Entry</button>
+
+<p>Total entries will appear in chart</p>
+
+</div>
+
+<div class="card">
+
+<h2>Product Tracker</h2>
+
+<input id="productName" placeholder="Product name">
+
+<input id="productSales" type="number" placeholder="Sales">
+
+<button onclick="addProduct()">Add Product</button>
+
+<ul id="productList"></ul>
+
+</div>
+
+<div class="card">
+
+<h2>AI Profit Prediction</h2>
+
+<label>Months</label>
+
+<input id="months" type="number" value="12">
+
+<button onclick="predict()">Predict Future Money</button>
+
+<p id="futureMoney"></p>
+
+</div>
+
+</div>
+
+<div class="chart-card">
+
+<h2>Money Growth Chart</h2>
+
+<canvas id="moneyChart"></canvas>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
