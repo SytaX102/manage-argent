@@ -1,13 +1,11 @@
-let moneyData=[]
-let labels=[]
 let chart
 
 function login(){
 
-let user=document.getElementById("user").value
-let pass=document.getElementById("pass").value
+let u=document.getElementById("user").value
+let p=document.getElementById("pass").value
 
-if(user==="admin" && pass==="1234"){
+if(u==="admin" && p==="1234"){
 
 localStorage.setItem("login","true")
 
@@ -16,7 +14,7 @@ window.location="dashboard.html"
 }
 else{
 
-document.getElementById("error").innerText="Invalid login"
+document.getElementById("error").innerText="Wrong login"
 
 }
 
@@ -30,85 +28,64 @@ window.location="index.html"
 
 }
 
-function addMoney(){
+function calcProfit(){
 
-let invest=parseFloat(document.getElementById("invest").value)
-let profit=parseFloat(document.getElementById("profit").value)
+let sales=parseFloat(document.getElementById("sales").value)
+let price=parseFloat(document.getElementById("price").value)
+let cost=parseFloat(document.getElementById("cost").value)
+let shipping=parseFloat(document.getElementById("shipping").value)
+let ads=parseFloat(document.getElementById("ads").value)
 
-if(isNaN(invest)||isNaN(profit)) return
+let revenue=sales*price
+let expenses=(sales*cost)+(sales*shipping)+ads
 
-let total=invest+profit
+let profit=revenue-expenses
 
-moneyData.push(total)
+document.getElementById("profit").innerText="Profit: $"+profit
 
-labels.push("Entry "+moneyData.length)
-
-saveData()
-
-updateChart()
+updateChart(profit)
 
 }
 
-function updateChart(){
+function scoreProduct(){
 
-let ctx=document.getElementById("moneyChart")
+let views=parseInt(document.getElementById("views").value)
+let likes=parseInt(document.getElementById("likes").value)
+let comments=parseInt(document.getElementById("comments").value)
+
+let score=(likes*2)+comments+(views/1000)
+
+document.getElementById("score").innerText="Product score: "+score
+
+}
+
+function updateChart(value){
+
+let ctx=document.getElementById("chart")
 
 if(!ctx) return
 
-if(chart) chart.destroy()
+if(!chart){
 
 chart=new Chart(ctx,{
 type:"line",
 data:{
-labels:labels,
-datasets:[
-{
-label:"Money growth",
-data:moneyData,
+labels:["1"],
+datasets:[{
+label:"Profit growth",
+data:[value],
 borderWidth:3
-}
-]
-},
-options:{
-responsive:true
+}]
 }
 })
 
 }
+else{
 
-function predict(){
-
-let months=parseInt(document.getElementById("months").value)
-
-let base=100
-let growth=1.25
-
-let future=base*Math.pow(growth,months)
-
-document.getElementById("futureMoney").innerText="Future money: $"+future.toFixed(2)
+chart.data.datasets[0].data.push(value)
+chart.data.labels.push(chart.data.labels.length+1)
+chart.update()
 
 }
-
-function addProduct(){
-
-let name=document.getElementById("product").value
-let sales=parseInt(document.getElementById("sales").value)
-let ads=parseInt(document.getElementById("ads").value)
-
-if(!name||isNaN(sales)||isNaN(ads)) return
-
-let score=(sales*2)+(ads*0.5)
-
-let li=document.createElement("li")
-
-li.innerText=name+" | score:"+score
-
-document.getElementById("products").appendChild(li)
-
-}
-
-function saveData(){
-
-localStorage.setItem("moneyData",JSON.stringify(moneyData))
 
 }
