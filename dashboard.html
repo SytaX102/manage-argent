@@ -23,17 +23,15 @@
 
 </header>
 
-<div class="grid">
+<section class="grid">
 
 <div class="card">
 
 <h2>Money Tracker</h2>
 
-<label>Invested</label>
-<input id="invest" type="number">
+<input id="invest" type="number" placeholder="Investment">
 
-<label>Profit</label>
-<input id="profit" type="number">
+<input id="profit" type="number" placeholder="Profit">
 
 <button onclick="addMoney()">Add Entry</button>
 
@@ -45,13 +43,15 @@
 
 <h2>Product Tracker</h2>
 
-<input id="productName" placeholder="Product name">
+<input id="product" placeholder="Product name">
 
-<input id="productSales" type="number" placeholder="Sales">
+<input id="sales" type="number" placeholder="Sales">
+
+<input id="ads" type="number" placeholder="Ad clicks">
 
 <button onclick="addProduct()">Add Product</button>
 
-<ul id="productList"></ul>
+<ul id="products"></ul>
 
 </div>
 
@@ -59,27 +59,25 @@
 
 <h2>AI Profit Prediction</h2>
 
-<label>Months</label>
-
 <input id="months" type="number" value="12">
 
-<button onclick="predict()">Predict Future Money</button>
+<button onclick="predict()">Predict Future</button>
 
 <p id="futureMoney"></p>
 
 </div>
 
-</div>
+</section>
 
 <div class="chart-card">
 
-<h2>Money Growth Chart</h2>
+<h2>Money Growth</h2>
 
 <canvas id="moneyChart"></canvas>
 
 </div>
 
-<script src="script.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
