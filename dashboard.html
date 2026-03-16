@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Dashboard</title>
 
@@ -17,63 +17,49 @@
 
 <header>
 
-<h1>AI Dropshipping Dashboard</h1>
+<h1>Dropshipping Dashboard</h1>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="products.html">Products</a>
+<a href="niches.html">Niches</a>
+
+</nav>
 
 <button onclick="logout()">Logout</button>
 
 </header>
 
-<section class="grid">
+<div class="container">
 
 <div class="card">
 
-<h2>Money Tracker</h2>
-
-<input id="invest" type="number" placeholder="Investment">
-
-<input id="profit" type="number" placeholder="Profit">
-
-<button onclick="addMoney()">Add Entry</button>
-
-<p>Total entries will appear in chart</p>
-
-</div>
-
-<div class="card">
-
-<h2>Product Tracker</h2>
-
-<input id="product" placeholder="Product name">
+<h2>Profit Calculator</h2>
 
 <input id="sales" type="number" placeholder="Sales">
 
-<input id="ads" type="number" placeholder="Ad clicks">
+<input id="price" type="number" placeholder="Price">
 
-<button onclick="addProduct()">Add Product</button>
+<input id="cost" type="number" placeholder="Cost">
 
-<ul id="products"></ul>
+<input id="shipping" type="number" placeholder="Shipping">
+
+<input id="ads" type="number" placeholder="Ad cost">
+
+<button onclick="calcProfit()">Calculate</button>
+
+<p id="profit"></p>
 
 </div>
 
 <div class="card">
 
-<h2>AI Profit Prediction</h2>
+<h2>Revenue Chart</h2>
 
-<input id="months" type="number" value="12">
-
-<button onclick="predict()">Predict Future</button>
-
-<p id="futureMoney"></p>
+<canvas id="chart"></canvas>
 
 </div>
-
-</section>
-
-<div class="chart-card">
-
-<h2>Money Growth</h2>
-
-<canvas id="moneyChart"></canvas>
 
 </div>
 
