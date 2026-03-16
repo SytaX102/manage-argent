@@ -1,52 +1,108 @@
-let chart;
+let chart
+let moneyData=[]
+let labels=[]
 
-function calculate(){
+function login(){
 
-let invest = parseFloat(document.getElementById("invest").value);
-let profit = parseFloat(document.getElementById("profit").value)/100;
-let months = parseInt(document.getElementById("months").value);
+let user=document.getElementById("username").value
+let pass=document.getElementById("password").value
 
-let money = invest;
+if(user==="admin" && pass==="1234"){
 
-let data = [];
-let labels = [];
+localStorage.setItem("login","true")
 
-for(let i=1;i<=months;i++){
+window.location="dashboard.html"
 
-money = money + money*profit;
+}
+else{
 
-data.push(money.toFixed(2));
-labels.push("Month "+i);
+document.getElementById("error").innerText="Invalid login"
 
 }
 
-document.getElementById("result").innerText="Future: $"+money.toFixed(2);
+}
 
-createChart(labels,data)
+function logout(){
+
+localStorage.removeItem("login")
+
+window.location="index.html"
 
 }
 
-function createChart(labels,data){
+function addMoney(){
 
-if(chart){
-chart.destroy();
+let invest=parseFloat(document.getElementById("invest").value)
+let profit=parseFloat(document.getElementById("profit").value)
+
+if(isNaN(invest)||isNaN(profit)) return
+
+let total=invest+profit
+
+moneyData.push(total)
+
+labels.push("Entry "+moneyData.length)
+
+updateChart()
+
 }
 
-const ctx=document.getElementById("moneyChart");
+function updateChart(){
+
+let ctx=document.getElementById("moneyChart")
+
+if(!ctx) return
+
+if(chart) chart.destroy()
 
 chart=new Chart(ctx,{
+
 type:"line",
+
 data:{
 labels:labels,
-datasets:[{
-label:"Money Growth",
-data:data,
+datasets:[
+{
+label:"Money growth",
+data:moneyData,
 borderWidth:3
-}]
+}
+]
 },
+
 options:{
 responsive:true
 }
-});
+
+})
+
+}
+
+function predict(){
+
+let months=parseInt(document.getElementById("months").value)
+
+let base=100
+let growth=1.25
+
+let future=base*Math.pow(growth,months)
+
+document.getElementById("futureMoney").innerText=
+"Predicted money: $"+future.toFixed(2)
+
+}
+
+function addProduct(){
+
+let name=document.getElementById("productName").value
+let sales=document.getElementById("productSales").value
+
+if(!name || !sales) return
+
+let li=document.createElement("li")
+
+li.innerText=name+" - "+sales+" sales"
+
+document.getElementById("productList").appendChild(li)
 
 }
