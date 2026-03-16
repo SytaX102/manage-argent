@@ -17,6 +17,29 @@ background:#1e293b;
 
 }
 
+nav a{
+
+color:white;
+margin-right:15px;
+text-decoration:none;
+
+}
+
+.container{
+
+padding:20px;
+
+}
+
+.card{
+
+background:#1e293b;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+
+}
+
 .login-container{
 
 display:flex;
@@ -29,9 +52,9 @@ height:100vh;
 .login-box{
 
 background:#1e293b;
-padding:40px;
+padding:30px;
 border-radius:10px;
-width:320px;
+width:300px;
 
 }
 
@@ -39,10 +62,9 @@ input{
 
 width:100%;
 padding:10px;
-margin-top:8px;
-margin-bottom:15px;
-border-radius:6px;
+margin:10px 0;
 border:none;
+border-radius:6px;
 
 }
 
@@ -62,51 +84,18 @@ background:#0ea5e9;
 
 }
 
-.grid{
-
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-padding:20px;
-
-}
-
-.card{
-
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-
-}
-
-.chart-card{
-
-margin:20px;
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-
-}
-
-ul{
-
-padding-left:20px;
-
-}
-
 footer{
 
 text-align:center;
 padding:20px;
-opacity:0.6;
 
 }
 
 @media(max-width:700px){
 
-.grid{
+header{
 
-grid-template-columns:1fr;
+flex-direction:column;
 
 }
 
