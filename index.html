@@ -7,36 +7,171 @@
 
 <title>AI Dropshipping SaaS</title>
 
-<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:#1e293b;
+}
+
+nav a{
+color:white;
+margin-right:15px;
+text-decoration:none;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+}
+
+button{
+padding:10px;
+background:#38bdf8;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+.login{
+width:300px;
+margin:auto;
+margin-top:150px;
+background:#1e293b;
+padding:30px;
+border-radius:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+@media(max-width:700px){
+.grid{
+grid-template-columns:1fr;
+}
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="login-container">
-
-<div class="login-box">
+<div id="loginPage" class="login">
 
 <h1>AI Dropshipping</h1>
 
-<p>Login to your dashboard</p>
-
-<label>Username</label>
-<input id="user" type="text" placeholder="Enter username">
-
-<label>Password</label>
-<input id="pass" type="password" placeholder="Enter password">
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
 
 <button onclick="login()">Login</button>
 
 <p id="error"></p>
 
-<div class="info">
+<p>Demo login: admin / 1234</p>
 
-<h3>Demo login</h3>
+</div>
 
-<p>username: admin</p>
-<p>password: 1234</p>
+<div id="dashboard" style="display:none">
+
+<header>
+
+<h2>Dropshipping Dashboard</h2>
+
+<button onclick="logout()">Logout</button>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Profit Calculator</h3>
+
+<input id="sales" type="number" placeholder="Sales">
+<input id="price" type="number" placeholder="Product price">
+<input id="cost" type="number" placeholder="Product cost">
+<input id="shipping" type="number" placeholder="Shipping cost">
+<input id="ads" type="number" placeholder="Ad spend">
+
+<button onclick="calculateProfit()">Calculate</button>
+
+<p id="profit"></p>
+
+</div>
+
+<div class="card">
+
+<h3>TikTok Product Analyzer</h3>
+
+<input id="views" type="number" placeholder="Views">
+<input id="likes" type="number" placeholder="Likes">
+<input id="comments" type="number" placeholder="Comments">
+
+<button onclick="analyzeProduct()">Analyze</button>
+
+<p id="score"></p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Revenue Chart</h3>
+
+<canvas id="chart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>Niche Ideas</h3>
+
+<ul>
+
+<li>Pet products</li>
+<li>Fitness gadgets</li>
+<li>LED room decor</li>
+<li>Phone accessories</li>
+<li>Kitchen tools</li>
+<li>Car gadgets</li>
+
+</ul>
 
 </div>
 
@@ -44,14 +179,101 @@
 
 </div>
 
-<footer>
+<script>
 
-<p>AI Dropshipping SaaS Dashboard</p>
-<p>Money tracker • Product tracker • AI prediction</p>
+let chart
 
-</footer>
+function login(){
 
-<script src="app.js"></script>
+let u=document.getElementById("user").value
+let p=document.getElementById("pass").value
+
+if(u==="admin" && p==="1234"){
+
+document.getElementById("loginPage").style.display="none"
+document.getElementById("dashboard").style.display="block"
+
+initChart()
+
+}
+else{
+
+document.getElementById("error").innerText="Wrong login"
+
+}
+
+}
+
+function logout(){
+
+location.reload()
+
+}
+
+function calculateProfit(){
+
+let sales=parseFloat(document.getElementById("sales").value)
+let price=parseFloat(document.getElementById("price").value)
+let cost=parseFloat(document.getElementById("cost").value)
+let shipping=parseFloat(document.getElementById("shipping").value)
+let ads=parseFloat(document.getElementById("ads").value)
+
+let revenue=sales*price
+let expenses=(sales*cost)+(sales*shipping)+ads
+
+let profit=revenue-expenses
+
+document.getElementById("profit").innerText="Profit: $"+profit.toFixed(2)
+
+updateChart(profit)
+
+}
+
+function analyzeProduct(){
+
+let views=parseInt(document.getElementById("views").value)
+let likes=parseInt(document.getElementById("likes").value)
+let comments=parseInt(document.getElementById("comments").value)
+
+let score=(likes*2)+comments+(views/1000)
+
+document.getElementById("score").innerText="Product score: "+score
+
+}
+
+function initChart(){
+
+let ctx=document.getElementById("chart")
+
+chart=new Chart(ctx,{
+
+type:"line",
+
+data:{
+labels:["1","2","3","4"],
+datasets:[
+{
+label:"Profit growth",
+data:[10,20,30,40],
+borderWidth:3
+}
+]
+}
+
+})
+
+}
+
+function updateChart(value){
+
+chart.data.datasets[0].data.push(value)
+chart.data.labels.push(chart.data.labels.length+1)
+
+chart.update()
+
+}
+
+</script>
 
 </body>
 </html>
