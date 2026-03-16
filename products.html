@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Products</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Product Finder</h1>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="products.html">Products</a>
+<a href="niches.html">Niches</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>TikTok Analyzer</h2>
+
+<input id="views" type="number" placeholder="Views">
+
+<input id="likes" type="number" placeholder="Likes">
+
+<input id="comments" type="number" placeholder="Comments">
+
+<button onclick="scoreProduct()">Analyze</button>
+
+<p id="score"></p>
+
+</div>
+
+<div class="card">
+
+<h2>Winning Products</h2>
+
+<ul id="productList"></ul>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
